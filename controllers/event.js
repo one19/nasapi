@@ -66,7 +66,7 @@ const buildQuery = (table, params) => {
 }
 
 module.exports = {
-  get: (params) => {
+  get: (params, preFilter) => {
     const table = r.table('events');
 
     if (params.id) {
@@ -78,7 +78,12 @@ module.exports = {
     console.log(params);
 
     const filterParams = properties.reduce(onlyProps(params), {});
-    const filteredTable = table.filter(filterParams);
+    if (preFilter) {
+      const filteredTable = table.filter(params);
+      params = {};
+    } else {
+      const filteredTable = table.filter(filterParams);
+    }
 
     const query = buildQuery(filteredTable, params);
 

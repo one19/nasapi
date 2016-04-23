@@ -51,14 +51,15 @@ module.exports = {
         res.timeStamp = Date.now();
         var day = 1000 * 60 * 60 * 24;
 
-        var queries = [
+        var query = {
           {longitude: {ge: res.longitude - 0.5}},
           {longitude: {le: res.longitude - 0.5}},
           {latitude: {ge: res.latitude - 0.5}},
           {latitude: {le: res.latitude - 0.5}},
           {timeStamp: {ge: res.timeStamp - day}}
-        ]
-        event.get(queries)
+        }
+        var preFilter = true;
+        event.get(query, preFilter)
         .then(respond(res))
         .catch( errHandlerFactory(res) )
       }
