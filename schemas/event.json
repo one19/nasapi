@@ -7,15 +7,17 @@
     },
     "longitude": {
       "type": "number",
-      "minimum": -180,
-      "maximum": 180,
-      "exclusiveMinimum": true
+      "minimum": 150,
+      "maximum": 152,
+      "exclusiveMinimum": false,
+      "exclusiveMaximum": false
     },
     "latitude": {
       "type": "number",
-      "minimum": -90,
-      "maximum": 90,
-      "exclusiveMinimum": true
+      "minimum": 33,
+      "maximum": 35,
+      "exclusiveMinimum": false,
+      "exclusiveMaximum": false
     },
     "event" : {
       "enum": [
@@ -30,11 +32,14 @@
       "type": "integer",
       "minimum": 1,
       "maximum": 4,
-      "exclusiveMinimum": false
+      "exclusiveMinimum": false,
+      "exclusiveMaximum": false
     },
     "timeStamp": {
       "type": "string",
-      "format": "date-time"
+      "faker": {
+        "fake": "{{date.recent}}"
+      }
     }
   },
   "required": ["longitude","latitude", "timeStamp", "rating", "type", "id"]
