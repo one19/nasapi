@@ -75,6 +75,7 @@ module.exports = {
     }
 
     params = _.assign({result: true, order: 'asc'}, normaliseParams(params));
+    console.log(params);
 
     const filterParams = properties.reduce(onlyProps(params), {});
     const filteredTable = table.filter(filterParams);
@@ -123,10 +124,9 @@ module.exports = {
         res[l[0]] = Number.parseFloat(l[1]);
       }
     });
+    console.log('eventres', res);
     res.timeStamp = Date.now();
-    console.log('res', res)
     const valid = validate(res);
-    console.log('valid', valid)
     if (!valid) return Promise.reject(valid);
     return r.table('events').insert(res, {returnChanges: true}).run()
     .then(firstChange);
