@@ -6,18 +6,10 @@
       "faker": "random.uuid"
     },
     "longitude": {
-      "type": "number",
-      "minimum": -180,
-      "maximum": 180,
-      "exclusiveMinimum": false,
-      "exclusiveMaximum": false
+      "type": "string",
     },
     "latitude": {
-      "type": "number",
-      "minimum": -90,
-      "maximum": 90,
-      "exclusiveMinimum": false,
-      "exclusiveMaximum": false
+      "type": "string",
     },
     "event" : {
       "enum": [
@@ -29,11 +21,7 @@
       ]
     },
     "rating": {
-      "type": "integer",
-      "minimum": 1,
-      "maximum": 4,
-      "exclusiveMinimum": false,
-      "exclusiveMaximum": true
+      "type": "string",
     },
     "timeStamp": {
       "type": "string"
