@@ -34,7 +34,7 @@ module.exports = {
     app.post('/events', (req, res) => {
       console.log('reqbody', req.body);
       console.log('resheaders', res.headers);
-      if req.body.match(/rating/){
+      if (req.body.match(/rating/)) {
         event.create(req.body)
         .then(respond(res))
         .catch( errHandlerFactory(res) );
