@@ -112,7 +112,9 @@ module.exports = {
     return table.getAll(r.args(query.getField('id').coerceTo('array'))).changes({includeInitial: true, includeStates: true}).run();
   },
   create: (event) => {
+    console.log('event', event)
     const valid = validate(event);
+    console.log('valid', valid)
     if (!valid) return Promise.reject(valid);
     return r.table('events').insert(event, {returnChanges: true}).run()
     .then(firstChange);
