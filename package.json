@@ -1,0 +1,33 @@
+{
+  "name": "nsapi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "coverage": "JWT_SECRET=foo RETHINK_HOST=localhost RETHINK_PORT=28015 RETHINK_NAME=nsapi PORT=3005 ./node_modules/.bin/istanbul cover test.js",
+    "localdev": "JWT_SECRET=foo RETHINK_HOST=localhost RETHINK_PORT=28015 RETHINK_NAME=nsapi PORT=3005 node start",
+    "start": "node start",
+    "test": "JWT_SECRET=foo RETHINK_HOST=localhost RETHINK_PORT=28015 RETHINK_NAME=nsapi PORT=3005 node test.js"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "bandname": "^1.0.0",
+    "jsen": "^0.6.0",
+    "json-schema-deref-sync": "^0.2.8",
+    "jsonwebtoken": "^5.4.1",
+    "lodash": "^3.10.1",
+    "required_env": "^1.0.0",
+    "restify": "^4.0.3",
+    "rethinkdbdash": "^2.2.8",
+    "socket.io": "^1.3.7",
+    "walkdir": "0.0.11"
+  },
+  "devDependencies": {
+    "blue-tape": "^0.1.11",
+    "istanbul": "^0.4.1",
+    "json-schema-faker": "^0.2.5",
+    "node-fetch": "^1.3.3",
+    "rimraf": "^2.4.4",
+    "socket.io-client": "^1.3.7"
+  }
+}
