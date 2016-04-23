@@ -32,6 +32,8 @@ module.exports = {
     });
 
     app.post('/events', (req, res) => {
+      window.w = req;
+      console.log(req)
       event.create(req.body)
       .then(respond(res))
       .catch( errHandlerFactory(res) )
