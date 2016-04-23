@@ -51,7 +51,7 @@ module.exports = {
         res.timeStamp = Date.now();
         var day = 1000 * 60 * 60 * 24;
 
-        var query = {[
+        var query = {and: [
           {longitude: {ge: res.longitude - 0.5}},
           {longitude: {le: res.longitude - 0.5}},
           {latitude: {ge: res.latitude - 0.5}},
