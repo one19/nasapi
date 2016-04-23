@@ -5,9 +5,37 @@
       "type": "string",
       "faker": "random.uuid"
     },
-    "name": {
-      "type": "string"
+    "longitude": {
+      "type": "number",
+      "minimum": -180,
+      "maximum": 180,
+      "exclusiveMinimum": true
+    },
+    "latitude": {
+      "type": "number",
+      "minimum": -90,
+      "maximum": 90,
+      "exclusiveMinimum": true
+    },
+    "event" : {
+      "enum": [
+        "humidity",
+        "dust",
+        "smoke",
+        "fire",
+        "allergy"
+      ]
+    },
+    "rating": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 4,
+      "exclusiveMinimum": false
+    },
+    "timeStamp": {
+      "type": "string",
+      "format": "date-time"
     }
   },
-  "required": ["name"]
+  "required": ["longitude","latitude", "timeStamp", "rating", "type", "id"]
 }
