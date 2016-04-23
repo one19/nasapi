@@ -36,7 +36,7 @@ module.exports = {
       console.log('resheaders', res.headers());
       if (req.body.match(/rating/)) {
         console.log('found a rating');
-        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:8888');
+        res.setHeader('Access-Control-Allow-Origin', '*');
         event.create(req.body)
         .then(respond(res))
         .catch( errHandlerFactory(res) );
