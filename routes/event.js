@@ -32,22 +32,23 @@ module.exports = {
     });
 
     app.post('/events', (req, res) => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
       if (req.body.match(/rating/)) {
         console.log('found a rating');
         event.create(req.body)
         .then(respond(res))
         .catch( errHandlerFactory(res) );
       } else {
-        var res = {};
+        var ret = {};
         req.body.split('&').forEach(function(line) {
           var l = line.split('=');
           if (l[0] === "event") {
-            res[l[0]] = l[1];
+            ret[l[0]] = l[1];
           } else {
-            res[l[0]] = Number.parseFloat(l[1]);
+            ret[l[0]] = Number.parseFloat(l[1]);
           }
         });
-        res.timeStamp = Date.now();
+        ret.timeStamp = Date.now();
         var day = 1000 * 60 * 60 * 24;
 
         var query = {and: [

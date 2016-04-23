@@ -83,7 +83,7 @@ module.exports = {
       return filteredTable = table.filter(params);
       params = {};
     } else {
-      filteredTable = table.filter(filterParams);
+      return resolve(filteredTable = table.filter(filterParams));
     }
 
     const query = buildQuery(filteredTable, params);
