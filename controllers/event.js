@@ -114,13 +114,13 @@ module.exports = {
     return table.getAll(r.args(query.getField('id').coerceTo('array'))).changes({includeInitial: true, includeStates: true}).run();
   },
   create: (event) => {
-    console.log('event', event)
     var res = {};
     event.split('&').forEach(function(line) {
       var l = line.split('=');
       res[l[0]] = l[1] + "";
     })
     res.timeStamp = new Date().toISOString();
+    console.log('res', res)
     const valid = validate(res);
     console.log('valid', valid)
     if (!valid) return Promise.reject(valid);

@@ -32,8 +32,6 @@ module.exports = {
     });
 
     app.post('/events', (req, res) => {
-      console.log('reqbody', req.body);
-      console.log('resheaders', res.headers());
       if (req.body.match(/rating/)) {
         console.log('found a rating');
         res.setHeader('Access-Control-Allow-Origin', '*');
