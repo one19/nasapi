@@ -118,7 +118,7 @@ module.exports = {
     var res = {};
     event.split('&').forEach(function(line) {
       var l = line.split('=');
-      res[l[0]] = l[1];
+      res[l[0]] = l[1] + "";
     })
     res.timeStamp = new Date().toISOString();
     const valid = validate(res);
