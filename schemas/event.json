@@ -13,11 +13,12 @@
     },
     "event" : {
       "enum": [
-        "humidity",
-        "dust",
-        "smoke",
-        "fire",
-        "allergy"
+        "coughing",
+        "itchy-eyes",
+        "nasal-obstruction",
+        "shortness-of-breath",
+        "sneezing",
+        "wheezing"
       ]
     },
     "rating": {
@@ -28,6 +29,6 @@
     }
   },
   "required": [
-    "longitude", "latitude", "timeStamp", "rating", "event"
+    "longitude", "latitude"
   ]
 }

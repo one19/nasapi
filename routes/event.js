@@ -32,10 +32,18 @@ module.exports = {
     });
 
     app.post('/events', (req, res) => {
-      console.log(req.body)
-      event.create(req.body)
-      .then(respond(res))
-      .catch( errHandlerFactory(res) )
+      console.log('reqbody', req.body);
+      console.log('resheaders', res.headers);
+      if req.body.match(/rating/){
+        event.create(req.body)
+        .then(respond(res))
+        .catch( errHandlerFactory(res) );
+      } else {
+        console.log('req query', req.query);
+        event.get(req.query)
+        .then(respond(res))
+        .catch( errHandlerFactory(res) )
+      }
     });
 
     app.put('/events/:id', (req, res) => {

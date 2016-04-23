@@ -120,6 +120,7 @@ module.exports = {
       var l = line.split('=');
       res[l[0]] = l[1];
     })
+    res.timeStamp = new Date().toISOString();
     const valid = validate(res);
     console.log('valid', valid)
     if (!valid) return Promise.reject(valid);
