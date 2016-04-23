@@ -10,6 +10,9 @@
     "test": "JWT_SECRET=foo RETHINK_HOST=localhost RETHINK_PORT=28015 RETHINK_NAME=nsapi PORT=3005 node test.js"
   },
   "license": "ISC",
+  "engines": {
+    "node": "4.1.2"
+  },
   "dependencies": {
     "bandname": "^1.0.0",
     "jsen": "^0.6.0",
