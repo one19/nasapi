@@ -3,8 +3,9 @@ const _ = require('lodash');
 
 const r = require('../lib/db.js');
 const schema = require('../schema.js').event;
-console.log('schema', schema)
+console.log('schema', schema);
 const validate = jsen(schema);
+console.log(validate);
 
 const firstChange = res => {
   return {
@@ -114,10 +115,15 @@ module.exports = {
   },
   create: (event) => {
     console.log('event', event)
-    const valid = validate(event);
+    var res = {};
+    event.split('&').forEach(function(line) {
+      var l = line.split('=');
+      res[l[0]] = l[1];
+    })
+    const valid = validate(res);
     console.log('valid', valid)
     if (!valid) return Promise.reject(valid);
-    return r.table('events').insert(event, {returnChanges: true}).run()
+    return r.table('events').insert(res, {returnChanges: true}).run()
     .then(firstChange);
   },
   update: (event) => {
