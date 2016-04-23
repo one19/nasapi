@@ -117,7 +117,7 @@ module.exports = {
     var res = {};
     event.split('&').forEach(function(line) {
       var l = line.split('=');
-      if (res[l[0]] == "event") {
+      if (l[0] === "event") {
         res[l[0]] = l[1];
       } else {
         res[l[0]] = Number.parseFloat(l[1]);
