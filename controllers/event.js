@@ -116,6 +116,7 @@ module.exports = {
   },
   create: (event) => {
     var res = {};
+    console.log('event', event)
     event.split('&').forEach(function(line) {
       var l = line.split('=');
       if (l[0] === "event") {
