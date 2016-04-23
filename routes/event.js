@@ -38,9 +38,8 @@ module.exports = {
         .then(respond(res))
         .catch( errHandlerFactory(res) );
       } else {
-        console.log('req query', req.query);
         var res = {};
-        params.split('&').forEach(function(line) {
+        req.body.split('&').forEach(function(line) {
           var l = line.split('=');
           if (l[0] === "event") {
             res[l[0]] = l[1];
