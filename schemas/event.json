@@ -28,6 +28,6 @@
     }
   },
   "required": [
-    "longitude","latitude", "timeStamp", "rating", "event"
+    "longitude", "latitude", "timeStamp", "rating", "event"
   ]
 }

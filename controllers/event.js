@@ -3,6 +3,7 @@ const _ = require('lodash');
 
 const r = require('../lib/db.js');
 const schema = require('../schema.js').event;
+console.log('schema', schema)
 const validate = jsen(schema);
 
 const firstChange = res => {

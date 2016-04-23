@@ -32,6 +32,7 @@ module.exports = {
     });
 
     app.post('/events', (req, res) => {
+      console.log(req.body)
       event.create(req.body)
       .then(respond(res))
       .catch( errHandlerFactory(res) )
