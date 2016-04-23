@@ -1,5 +1,5 @@
 const _ = require('lodash');
-const event = require('../controllers/event.js');
+const sensor = require('../controllers/sensor.js');
 
 const errHandlerFactory = res => {
   return err => {
@@ -19,48 +19,40 @@ const respond = res => body => {
 
 module.exports = {
   http: app => {
-    app.get('/events', (req, res) => {
-      event.get(req.query)
+    app.get('/sensors', (req, res) => {
+      sensor.get(req.query)
       .then(respond(res))
       .catch( errHandlerFactory(res) )
     });
 
-    app.get('/events/:id', (req, res) => {
-      event.get(_.assign({id: req.params.id}, req.query))
+    app.get('/sensors/:id', (req, res) => {
+      sensor.get(_.assign({id: req.params.id}, req.query))
       .then(respond(res))
       .catch( errHandlerFactory(res) )
     });
 
-    app.post('/events', (req, res) => {
-      if (req.body.match(/rating/)) {
-        console.log('found a rating');
-        event.create(req.body)
-        .then(respond(res))
-        .catch( errHandlerFactory(res) );
-      } else {
-        console.log('req query', req.query);
-        event.get(req.query)
-        .then(respond(res))
-        .catch( errHandlerFactory(res) )
-      }
-    });
-
-    app.put('/events/:id', (req, res) => {
-      event.update(req.body)
+    app.post('/sensors', (req, res) => {
+      sensor.create(req.body)
       .then(respond(res))
       .catch( errHandlerFactory(res) )
     });
 
-    app.del('/events/:id', (req, res) => {
-      event.delete(req.params.id)
+    app.put('/sensors/:id', (req, res) => {
+      sensor.update(req.body)
+      .then(respond(res))
+      .catch( errHandlerFactory(res) )
+    });
+
+    app.del('/sensors/:id', (req, res) => {
+      sensor.delete(req.params.id)
       .then(respond(res))
       .catch( errHandlerFactory(res) )
     });
   },
   ws: io => {
-    const nsp = io.of('/events');
+    const nsp = io.of('/sensors');
     nsp.on('connection', socket => {
-      event.watch(socket.handshake.query)
+      sensor.watch(socket.handshake.query)
       .then(cursor => {
         cursor.each((err, data) => {
           if (!data) return;

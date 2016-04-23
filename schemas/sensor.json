@@ -1,0 +1,25 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "faker": "random.uuid"
+    },
+    "tempC": {
+      "type": "number"
+    },
+    "humidity": {
+      "type": "number"
+    },
+    "longitude": {
+      "type": "number"
+    },
+    "latitude": {
+      "type": "number"
+    },
+    "timeStamp": {
+      "type": "number"
+    }
+  },
+  "required": ["tempC", "humidity", "longitude", "latitude"]
+}

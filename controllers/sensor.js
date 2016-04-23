@@ -2,10 +2,8 @@ const jsen = require('jsen');
 const _ = require('lodash');
 
 const r = require('../lib/db.js');
-const schema = require('../schema.js').event;
-console.log('schema', schema);
+const schema = require('../schema.js').sensor;
 const validate = jsen(schema);
-console.log(validate);
 
 const firstChange = res => {
   return {
@@ -67,7 +65,7 @@ const buildQuery = (table, params) => {
 
 module.exports = {
   get: (params) => {
-    const table = r.table('events');
+    const table = r.table('sensors');
 
     if (params.id) {
       return table.get(params.id).run()
@@ -98,7 +96,7 @@ module.exports = {
     });
   },
   watch: (params) => {
-    const table = r.table('events');
+    const table = r.table('sensors');
 
     if (params.id) {
       return table.get(params.id).changes({includeInitial: true, includeStates: true}).run();
@@ -113,32 +111,25 @@ module.exports = {
 
     return table.getAll(r.args(query.getField('id').coerceTo('array'))).changes({includeInitial: true, includeStates: true}).run();
   },
-  create: (event) => {
-    var res = {};
-    event.split('&').forEach(function(line) {
+  create: (sensor) => {
+    sensor.split('&').forEach(function(line) {
       var l = line.split('=');
-      if (res[l[0]] === "event") {
-        res[l[0]] = l[1];
-      } else {
-        res[l[0]] = Number.parseFloat(l[1]);
-      }
-    });
+      res[l[0]] = Number.parseFloat(l[1]);
+    })
     res.timeStamp = Date.now();
-    console.log('res', res)
-    const valid = validate(res);
-    console.log('valid', valid)
+    const valid = validate(sensor);
     if (!valid) return Promise.reject(valid);
-    return r.table('events').insert(res, {returnChanges: true}).run()
+    return r.table('sensors').insert(sensor, {returnChanges: true}).run()
     .then(firstChange);
   },
-  update: (event) => {
-    const valid = validate(event);
+  update: (sensor) => {
+    const valid = validate(sensor);
     if (!valid) return Promise.reject(valid);
-    return r.table('events').update(event, {returnChanges: true}).run()
+    return r.table('sensors').update(sensor, {returnChanges: true}).run()
     .then(firstChange);
   },
   delete: (id) => {
-    return r.table('events').get(id).delete({returnChanges: true}).run()
+    return r.table('sensors').get(id).delete({returnChanges: true}).run()
     .then(res => {
       return res;
     })

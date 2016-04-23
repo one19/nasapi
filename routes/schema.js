@@ -5,9 +5,6 @@ module.exports = {
     app.get('/schema', (req, res) => {
       res.json(schema);
     });
-    app.get('/', (req, res) => {
-      res.render('views/index.html');
-    })
   },
   ws: () => {}
 };

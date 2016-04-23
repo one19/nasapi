@@ -6,10 +6,10 @@
       "faker": "random.uuid"
     },
     "longitude": {
-      "type": "string"
+      "type": "number"
     },
     "latitude": {
-      "type": "string"
+      "type": "number"
     },
     "event" : {
       "enum": [
@@ -22,10 +22,10 @@
       ]
     },
     "rating": {
-      "type": "string"
+      "type": "number"
     },
     "timeStamp": {
-      "type": "string"
+      "type": "number"
     }
   },
   "required": [
