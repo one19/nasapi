@@ -42,5 +42,7 @@
       }
     }
   },
-  "required": ["longitude","latitude", "timeStamp", "rating", "type", "id"]
+  "required": [
+    "longitude","latitude", "timeStamp", "rating", "type", "id", "event"
+  ]
 }
