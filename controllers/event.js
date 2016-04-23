@@ -80,7 +80,7 @@ module.exports = {
     const filterParams = properties.reduce(onlyProps(params), {});
     var filteredTable;
     if (preFilter) {
-      filteredTable = table.filter(params);
+      return filteredTable = table.filter(params);
       params = {};
     } else {
       filteredTable = table.filter(filterParams);
