@@ -78,11 +78,12 @@ module.exports = {
     console.log(params);
 
     const filterParams = properties.reduce(onlyProps(params), {});
+    var filteredTable;
     if (preFilter) {
-      const filteredTable = table.filter(params);
+      filteredTable = table.filter(params);
       params = {};
     } else {
-      const filteredTable = table.filter(filterParams);
+      filteredTable = table.filter(filterParams);
     }
 
     const query = buildQuery(filteredTable, params);
