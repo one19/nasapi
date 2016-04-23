@@ -39,7 +39,26 @@ module.exports = {
         .catch( errHandlerFactory(res) );
       } else {
         console.log('req query', req.query);
-        event.get(req.query)
+        var res = {};
+        params.split('&').forEach(function(line) {
+          var l = line.split('=');
+          if (l[0] === "event") {
+            res[l[0]] = l[1];
+          } else {
+            res[l[0]] = Number.parseFloat(l[1]);
+          }
+        });
+        res.timeStamp = Date.now();
+        var day = 1000 * 60 * 60 * 24;
+
+        var queries = [
+          {longitude: {ge: res.longitude - 0.5}},
+          {longitude: {le: res.longitude - 0.5}},
+          {latitude: {ge: res.latitude - 0.5}},
+          {latitude: {le: res.latitude - 0.5}},
+          {timeStamp: {ge: res.timeStamp - day}}
+        ]
+        event.get(queries)
         .then(respond(res))
         .catch( errHandlerFactory(res) )
       }
