@@ -34,6 +34,7 @@ module.exports = {
 
     app.post('/events', (req, res) => {
       res.setHeader('Access-Control-Allow-Origin', '*');
+      console.log('reqbody', req.body);
       if (_.isObject(req.body)) {
         var hotBod = true;
         event.create(req.body, hotBod)
