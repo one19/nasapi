@@ -79,10 +79,9 @@ module.exports = {
     const filterParams = properties.reduce(onlyProps(params), {});
     var filteredTable;
     if (preFilter) {
-      return filteredTable = table.filter(params);
-      params = {};
+      return resolve(table.filter(parms));
     } else {
-      return resolve(filteredTable = table.filter(parms));
+      filteredTable = table.filter(filterParams);
     }
 
     const query = buildQuery(filteredTable, params);

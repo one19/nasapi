@@ -26,7 +26,7 @@ module.exports = {
     });
 
     app.get('/events/:id', (req, res) => {
-      event.get(null)
+      event.get(_.assign({id: req.params.id}, req.query))
       .then(respond(res))
       .catch( errHandlerFactory(res) )
     });
