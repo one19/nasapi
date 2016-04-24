@@ -117,6 +117,7 @@ module.exports = {
       res[key] = Number.parseFloat(sensor[key])
     });
     res.timeStamp = Date.now();
+    console.log('RES FINAL', res);
     const valid = validate(sensor);
     if (!valid) return Promise.reject(valid);
     return r.table('sensors').insert(sensor, {returnChanges: true}).run()
