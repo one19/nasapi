@@ -120,7 +120,6 @@ module.exports = {
     console.log('RES FINAL', res);
     const valid = validate(sensor);
     console.log('valid:', valid);
-    if (!valid) return Promise.reject(valid);
     return r.table('sensors').insert(sensor, {returnChanges: true}).run()
     .then(firstChange);
   },
