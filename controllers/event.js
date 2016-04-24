@@ -153,7 +153,9 @@ module.exports = {
     res.timeStamp = Date.now();
     const valid = validate(res);
     console.log("valid:", valid);
-    if (!valid) return Promise.reject(valid);
+    // if (!valid) return Promise.reject(valid);
+
+    //Some day, when the sky is dark, and the world is silent; I will look upon this code and tremble. For it is the destroyer of happiness. Serialized fucking json objects won't say they're ojbects of the correct format. Since I've whipped the team into shape, and all events are sent correctly anyway; we're removing restrictions, and accepting any and all data; no matter how absolutely borked it may be. May god have mercy on my soul.
     return r.table('events').insert(res, {returnChanges: true}).run()
     .then(firstChange);
   },
