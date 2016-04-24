@@ -50,7 +50,7 @@ module.exports = {
         });
         ret.timeStamp = Date.now();
         var day = 1000 * 60 * 60 * 24;
-
+        console.log('res.long', res.longitude, 'res.lat', res.latitude, 'tstamp', res.timeStamp);
         var query = {and: [
           {longitude: {ge: res.longitude - 0.5}},
           {longitude: {le: res.longitude - 0.5}},
