@@ -119,18 +119,22 @@ module.exports = {
 
     return table.getAll(r.args(query.getField('id').coerceTo('array'))).changes({includeInitial: true, includeStates: true}).run();
   },
-  create: (event) => {
-    var res = {};
-    console.log('event', event)
-    event.split('&').forEach(function(line) {
-      var l = line.split('=');
-      if (l[0] === "event") {
-        res[l[0]] = l[1];
-      } else {
-        res[l[0]] = Number.parseFloat(l[1]);
-      }
-    });
-    console.log('eventres', res);
+  create: (event, hotBod) => {
+    if (hotBod) {
+      res = event;
+    } else {
+      var res = {};
+      console.log('event', event)
+      event.split('&').forEach(function(line) {
+        var l = line.split('=');
+        if (l[0] === "event") {
+          res[l[0]] = l[1];
+        } else {
+          res[l[0]] = Number.parseFloat(l[1]);
+        }
+      });
+      console.log('eventres', res);
+    }
     res.timeStamp = Date.now();
     const valid = validate(res);
     if (!valid) return Promise.reject(valid);
