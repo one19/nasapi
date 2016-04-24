@@ -50,13 +50,13 @@ module.exports = {
         });
         ret.timeStamp = Date.now();
         var day = 1000 * 60 * 60 * 24;
-        console.log('res.long', res.longitude, 'res.lat', res.latitude, 'tstamp', res.timeStamp);
+        console.log('res.long', ret.longitude, 'ret.lat', ret.latitude, 'tstamp', ret.timeStamp);
         var query = {and: [
-          {longitude: {ge: res.longitude - 0.5}},
-          {longitude: {le: res.longitude - 0.5}},
-          {latitude: {ge: res.latitude - 0.5}},
-          {latitude: {le: res.latitude - 0.5}},
-          {timeStamp: {ge: res.timeStamp - day}}
+          {longitude: {ge: ret.longitude - 0.5}},
+          {longitude: {le: ret.longitude - 0.5}},
+          {latitude: {ge: ret.latitude - 0.5}},
+          {latitude: {le: ret.latitude - 0.5}},
+          {timeStamp: {ge: ret.timeStamp - day}}
         ]};
         var preFilter = true;
         event.get(query, preFilter)
