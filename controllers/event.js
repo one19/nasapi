@@ -79,7 +79,10 @@ module.exports = {
     const filterParams = properties.reduce(onlyProps(params), {});
     var filteredTable;
     if (preFilter) {
-      return table.filter(parms);
+      console.log('chickiparm', parms);
+      console.log(table.filter(parms));
+      return Promise.resolve({result: table.filter(parms)});
+
     } else {
       filteredTable = table.filter(filterParams);
     }
