@@ -143,9 +143,9 @@ module.exports = {
       });
       Object.keys(res).forEach(function(key) {
         if (key === "event") {
-          res[key] = a[key];
+          res[key] = res[key];
         } else {
-          res[key] =  Number.parseFloat(a[key]);
+          res[key] =  Number.parseFloat(res[key]);
         }
       });
       console.log('eventres', res);
