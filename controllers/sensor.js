@@ -112,10 +112,10 @@ module.exports = {
     return table.getAll(r.args(query.getField('id').coerceTo('array'))).changes({includeInitial: true, includeStates: true}).run();
   },
   create: (sensor) => {
-    sensor.split('&').forEach(function(line) {
-      var l = line.split('=');
-      res[l[0]] = Number.parseFloat(l[1]);
-    })
+    var res = {};
+    Object.keys.forEach(function(key) {
+      res[key] = Number.parseFloat(sensor[key])
+    });
     res.timeStamp = Date.now();
     const valid = validate(sensor);
     if (!valid) return Promise.reject(valid);

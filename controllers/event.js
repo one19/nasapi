@@ -120,10 +120,18 @@ module.exports = {
     return table.getAll(r.args(query.getField('id').coerceTo('array'))).changes({includeInitial: true, includeStates: true}).run();
   },
   create: (event, hotBod) => {
+    var res = {};
     if (hotBod) {
-      res = event;
+      res = {};
+      Object.keys(event).forEach(function(key) {
+        if (key === "event") {
+          res[key] = a[key];
+        } else {
+          res[key] =  Number.parseFloat(a[key]);
+        }
+      });
+      res = Object.keys(event).map;
     } else {
-      var res = {};
       console.log('event', event)
       event.split('&').forEach(function(line) {
         var l = line.split('=');
