@@ -141,10 +141,18 @@ module.exports = {
           res[l[0]] = Number.parseFloat(l[1]);
         }
       });
+      Object.keys(res).forEach(function(key) {
+        if (key === "event") {
+          res[key] = a[key];
+        } else {
+          res[key] =  Number.parseFloat(a[key]);
+        }
+      });
       console.log('eventres', res);
     }
     res.timeStamp = Date.now();
     const valid = validate(res);
+    console.log("valid:", valid);
     if (!valid) return Promise.reject(valid);
     return r.table('events').insert(res, {returnChanges: true}).run()
     .then(firstChange);
