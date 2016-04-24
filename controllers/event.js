@@ -79,7 +79,7 @@ module.exports = {
     const filterParams = properties.reduce(onlyProps(params), {});
     var filteredTable;
     if (preFilter) {
-      return resolve(table.filter(parms));
+      return table.filter(parms);
     } else {
       filteredTable = table.filter(filterParams);
     }
