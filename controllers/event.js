@@ -75,7 +75,7 @@ module.exports = {
     }
 
     params = _.assign({result: true, order: 'asc'}, normaliseParams(params));
-    console.log(params);
+    var parms = _.assign({result: true, order: 'asc'}, normaliseParams(params));
 
     const filterParams = properties.reduce(onlyProps(params), {});
     var filteredTable;
@@ -83,7 +83,7 @@ module.exports = {
       return filteredTable = table.filter(params);
       params = {};
     } else {
-      return resolve(filteredTable = table.filter(filterParams));
+      return resolve(filteredTable = table.filter(parms));
     }
 
     const query = buildQuery(filteredTable, params);
