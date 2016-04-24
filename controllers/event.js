@@ -130,7 +130,6 @@ module.exports = {
           res[key] =  Number.parseFloat(a[key]);
         }
       });
-      res = Object.keys(event).map;
     } else {
       console.log('event', event)
       event.split('&').forEach(function(line) {

@@ -113,7 +113,7 @@ module.exports = {
   },
   create: (sensor) => {
     var res = {};
-    Object.keys.forEach(function(key) {
+    Object.keys(sensor).forEach(function(key) {
       res[key] = Number.parseFloat(sensor[key])
     });
     res.timeStamp = Date.now();
