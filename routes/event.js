@@ -60,7 +60,7 @@ module.exports = {
         ]};
         var preFilter = true;
         event.get(query, preFilter)
-        .then(respond(res))
+        .then(respond(ret))
         .catch( errHandlerFactory(res) )
       }
     });
