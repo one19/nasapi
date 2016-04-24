@@ -73,9 +73,8 @@ module.exports = {
       return table.get(params.id).run()
       .then(res => { return {result: res} });
     }
-
+    var parms = _.assign(params);
     params = _.assign({result: true, order: 'asc'}, normaliseParams(params));
-    var parms = _.assign({result: true, order: 'asc'}, normaliseParams(params));
 
     const filterParams = properties.reduce(onlyProps(params), {});
     var filteredTable;
