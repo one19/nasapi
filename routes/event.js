@@ -20,6 +20,7 @@ const respond = res => body => {
 module.exports = {
   http: app => {
     app.get('/events', (req, res) => {
+      res.setHeader('Access-Control-Allow-Origin', '*');
       event.get(req.query)
       .then(respond(res))
       .catch( errHandlerFactory(res) )
